@@ -1,0 +1,41 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} vCart- Contact US page{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <h2> Contact Us</h2>
+
+    <form name="myForm" action="/shop/contact" method="post" onsubmit="return validateForm()">
+        {% csrf_token %}
+  <div class="form-group my-3">
+    <label for="name">Name</label>
+    <input type="text" class="form-control"  name="name" id="name" placeholder="Enter Your Name">
+  </div>
+   <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Your Email ID">
+  </div>
+    <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Your Tel Num">
+  </div>
+
+  <div class="form-group">
+    <label for="message">Enter your Comments</label>
+    <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+  </div>
+        <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+ </form>
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    {% if thank %}
+     alert('Thanks for Contact us. Your message id is: {{id}}. We will contact back');
+     localStorage.clear();
+     document.location = "/shop";
+    {% endif %}
+</script>
+{% endblock %}
